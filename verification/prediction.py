@@ -3,8 +3,7 @@ from checkio import api
 
 
 class CheckioRefereePrediction(CheckiOReferee):
-    def __init__(self, max_length, **kwargs):
-        self.max_length = max_length
+    def __init__(self, **kwargs):
         self.total_score = 0
         super().__init__(**kwargs)
 
