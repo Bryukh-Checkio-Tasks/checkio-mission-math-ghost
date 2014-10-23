@@ -1,44 +1,55 @@
 <p>
-    <i>( Describe task in general )</i>
+    Ghosts are very unpredictable creatures.
+    But is the "True" randomness is exist or we just don't know how is it defined?
+    Our ghosts appear in various points each hour and these points are calculated
+    as a complex function of number (hour). So if we have several observations, then we can try to
+    predict the next point where the ghost appears.
 </p>
 
 <p>
-    Sum two passed ints
+    The ghost appear on the square with size 10 by 10 kilometres.
+    We writen points where the ghost appeared from 1th hour to Nth hour
+    (5&nbsp;&le;&nbsp;N&nbsp;&le;&nbsp;10) and you should try to predict where it will appear
+    by (N+1)th hour. Coordinates are calculated as a fixed mathematics formula where
+    as an argument is using a hour. Formulas for horizontal and vertical coordinates are various
+    (but in theory can be the same) and the results are taken by modulus 10.
 </p>
-
-<p style="text-align: center;">
-    <img class="for_info_only" title="example" src="{{MEDIA}}example.png" alt="example" width="392px"/>
-    <img class="for_editor_only" title="example" src="{{MEDIA}}example.png" alt="example" width="380px"/>
-</p>
-
-<p><i>( Explain input and output values )</i></p>
 <p>
-    <strong>Input: </strong> Two arguments. Both are int
+    You are given recent points where the ghost appeared as a sequence on coordinates (x,y).
+    You should try to predict the next point and return a two numbers as a tuple or as a list.
 </p>
 
 <p>
-    <strong>Output: </strong> Int. 
+    This is a mission with dynamic scores and result will be calculated based on your precision.
+    Tests are random - for each case we generate a formula and calculate N+1 points with input value
+    1, 2, ... N+1. We will show you N values and compare your result with (N+1)th point.
+    For each test you can get from 0 to 100 points. Points are calculated by distance of your
+    prediction and the "real" point. If the distance equal or greater by 3 then you get 0 points for
+    that test.
+</p>
+
+<p>
+    <strong>Input: </strong> Recent points as a tuple of tuples with floats.
+</p>
+
+<p>
+    <strong>Output: </strong> The prediction as a list or a tuple of two floats or integers.
 </p>
 
 
 
 <div class="for_info_only">
-    <p><i>( Put some usage examples )</i></p>
     <p>
         <strong>Example:</strong>
     </p>
     <pre class="brush: python">
-checkio(3, 2) == 5
-checkio(5, 7) == 12
     </pre>
 </div>
 
 <p class="for_info_only">
     <strong>How it is used: </strong>
-    <i>(Here you can explain how it can be used in development and what is usage of this.)</i>
 </p>
 
 <p>
     <strong>Precondition:</strong>
-    <i>Constraints for Input</i>
 </p>
