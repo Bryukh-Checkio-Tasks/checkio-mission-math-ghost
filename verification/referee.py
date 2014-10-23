@@ -50,14 +50,19 @@ def ext_checker(answer, user_result):
     score = 0 if distance >= 3 else round(100 * distance / MAX_DIST)
     return True, "Next", score
 
+cover = """def cover(f, data):
+    return tuple(tuple(d) for d in data)
+"""
+
+
 api.add_listener(
     ON_CONNECT,
     CheckioRefereePrediction(
         tests=TESTS,
-        # cover_code={
-        #     'python-27': cover_codes.unwrap_args,  # or None
-        #     'python-3': cover_codes.unwrap_args
-        # },
+        cover_code={
+            'python-27': cover,
+            'python-3': cover
+        },
         checker=ext_checker,  # checkers.float.comparison(2)
         # add_allowed_modules=[],
         # add_close_builtins=[],

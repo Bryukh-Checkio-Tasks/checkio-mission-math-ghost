@@ -6,31 +6,44 @@ Each test is dict with
     "answer" -- your right answer
     "explanation" -- not necessary key, it's using for additional info in animation.
 """
+import random
 
 
 TESTS = {
-    "Basics": [
-        {
-            "input": [3, 2],
-            "answer": 5,
-            "explanation": "3+2=?"
-        },
-        {
-            "input": [5, 7],
-            "answer": 12,
-            "explanation": "5+7=?"
-        }
-    ],
-    "Extra": [
-        {
-            "input": [6, 3],
-            "answer": 9,
-            "explanation": "6+3=?"
-        },
-        {
-            "input": [6, 7],
-            "answer": 13,
-            "explanation": "6+7=?"
-        }
+    "Score": [
+
     ]
 }
+
+N = 20
+SIZE = 10
+
+
+def generate_formula(prob_x=0.3, prob_bracket=0.2):
+    formula = "x"
+    for _ in range(15):
+        operation = random.choice(["+", "-", "*", "/"])
+        formula += operation
+        if random.random() < prob_x:
+            formula += "x"
+        else:
+            formula += str(round(random.random() * 10, 3))
+        if random.random() < prob_bracket:
+            formula = "(" + formula + ")"
+    return formula
+
+
+for dummy in range(N):
+    formula_x = generate_formula()
+    formula_y = generate_formula()
+    points = []
+    for x in range(1, 11):
+        try:
+            x = round(eval(formula_x) % 10, 3)
+            y = round(eval(formula_y) % 10, 3)
+            points.append([x, y])
+        except OverflowError:
+            dummy -= 1
+            break
+    else:
+        TESTS["Score"].append({"input": points[:-1], "answer": points[-1]})
