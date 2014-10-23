@@ -47,7 +47,7 @@ def ext_checker(answer, user_result):
     if (not 0 <= user_result[0] < 10 or not 0 <= user_result[1] < 10):
         return False, "The prediction coordinates should be from 0 to 10.", 0
     distance = hypot(answer[0] - user_result[0], answer[1] - user_result[1])
-    score = 0 if distance >= 3 else round(100 * distance / MAX_DIST)
+    score = 0 if distance >= 1 else round(100 * distance / MAX_DIST)
     return True, "Next", score
 
 cover = """def cover(f, data):
