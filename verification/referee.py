@@ -64,6 +64,7 @@ api.add_listener(
             'python-3': cover
         },
         checker=ext_checker,  # checkers.float.comparison(2)
+        function_name="predict_ghost"
         # add_allowed_modules=[],
         # add_close_builtins=[],
         # remove_allowed_modules=[]
