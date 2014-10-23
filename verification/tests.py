@@ -39,9 +39,10 @@ for dummy in range(N):
     points = []
     for x in range(1, 12):
         try:
-            x = round(eval(formula_x) % 10, 3)
-            y = round(eval(formula_y) % 10, 3)
-            points.append([x, y])
+            print(eval(formula_x))
+            i = round(eval(formula_x) % 10, 3)
+            j = round(eval(formula_y) % 10, 3)
+            points.append([i, j])
         except OverflowError:
             dummy -= 1
             break
