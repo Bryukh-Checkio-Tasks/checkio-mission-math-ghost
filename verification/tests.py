@@ -35,16 +35,16 @@ def generate_formula(prob_x=0.3, prob_bracket=0.2):
 
 for dummy in range(N):
     formula_x = generate_formula()
-    formula_y = generate_formula()
-    points = []
+    # formula_y = generate_formula()
+    values = []
     for x in range(1, 12):
         try:
-            print(eval(formula_x))
-            i = round(eval(formula_x) % 10, 3)
-            j = round(eval(formula_y) % 10, 3)
-            points.append([i, j])
+            # print(eval(formula_x))
+            i = round(eval(formula_x), 3)
+            # j = round(eval(formula_y) % 10, 3)
+            values.append(i)
         except OverflowError:
             dummy -= 1
             break
     else:
-        TESTS["Score"].append({"input": points[:-1], "answer": points[-1]})
+        TESTS["Score"].append({"input": values[:-1], "answer": values[-1]})
