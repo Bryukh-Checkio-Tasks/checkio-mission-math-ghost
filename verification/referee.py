@@ -31,18 +31,34 @@ from checkio import api
 from checkio.referees.io import CheckiOReferee
 from checkio.referees import cover_codes
 from checkio.referees import checkers
+from prediction import CheckioRefereePrediction
 
 from tests import TESTS
 
+from math import hypot
+
+MAX_DIST = 3
+
+def ext_checker(answer, user_result):
+    if (not isinstance(user_result, (list, tuple)) or len(user_result) != 2 or
+            not isinstance(user_result[0], (int, float)) or
+            not isinstance(user_result[0], (int, float))):
+        return False, "The result should be a list/tuple of the numbers.", 0
+    if (not 0 <= user_result[0] < 10 or not 0 <= user_result[1] < 10):
+        return False, "The prediction coordinates should be from 0 to 10.", 0
+    distance = hypot(answer[0] - user_result[0], answer[1] - user_result[1])
+    score = 0 if distance >= 3 else round(100 * distance / MAX_DIST)
+    return True, "Next", score
+
 api.add_listener(
     ON_CONNECT,
-    CheckiOReferee(
+    CheckioRefereePrediction(
         tests=TESTS,
-        cover_code={
-            'python-27': cover_codes.unwrap_args,  # or None
-            'python-3': cover_codes.unwrap_args
-        },
-        # checker=None,  # checkers.float.comparison(2)
+        # cover_code={
+        #     'python-27': cover_codes.unwrap_args,  # or None
+        #     'python-3': cover_codes.unwrap_args
+        # },
+        checker=ext_checker,  # checkers.float.comparison(2)
         # add_allowed_modules=[],
         # add_close_builtins=[],
         # remove_allowed_modules=[]
