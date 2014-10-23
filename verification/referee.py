@@ -51,7 +51,7 @@ def ext_checker(answer, user_result):
     return True, "Next", score
 
 cover = """def cover(f, data):
-    return tuple(tuple(d) for d in data)
+    return f(tuple(tuple(d) for d in data))
 """
 
 

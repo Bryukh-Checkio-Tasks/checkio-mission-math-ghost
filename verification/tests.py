@@ -37,7 +37,7 @@ for dummy in range(N):
     formula_x = generate_formula()
     formula_y = generate_formula()
     points = []
-    for x in range(1, 11):
+    for x in range(1, 12):
         try:
             x = round(eval(formula_x) % 10, 3)
             y = round(eval(formula_y) % 10, 3)
