@@ -42,7 +42,7 @@ if __name__ == '__main__':
                     score_distance = (max(values) - min(values)) * SCORE_DIST
                     user_result = f(values[:-1])
                     distance = abs(user_result - values[-1])
-                    if distance >= score_distance:
+                    if distance < score_distance:
                         score += round(100 * ((score_distance - distance) / score_distance))
         print("Total score: {}".format(score))
         return score
