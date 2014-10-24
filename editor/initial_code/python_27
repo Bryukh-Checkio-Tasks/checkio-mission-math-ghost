@@ -1,5 +1,5 @@
-def predict_ghost(points):
-    return [1, 1]
+def predict_ghost(values):
+    return values[-1]
 
 if __name__ == '__main__':
     #These "asserts" using only for self-checking and not necessary for auto-testing
