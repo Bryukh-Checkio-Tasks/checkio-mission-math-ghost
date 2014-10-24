@@ -130,7 +130,7 @@ requirejs(['ext_editor_1', 'jquery_190', 'raphael_210', 'snap.svg_030'],
                 //if you need additional info from tests (if exists)
                 var explanation = data.ext["explanation"];
                 $content.find('.output').html('&nbsp;Your result:&nbsp;' + JSON.stringify(userResult) +
-                    '<br>+' + result_score + " score.");
+                    '<br>+' + result_score + " points.");
                 if (!result) {
                     $content.find('.answer').html(result_addon + "<br> Real point is " + JSON.stringify(rightResult));
                     $content.find('.answer').addClass('error');
@@ -138,7 +138,7 @@ requirejs(['ext_editor_1', 'jquery_190', 'raphael_210', 'snap.svg_030'],
                     $content.find('.call').addClass('error');
                 }
                 else {
-                    $content.find('.answer').html("Real point is " + JSON.stringify(rightResult));
+                    $content.find('.answer').html("Real value is " + JSON.stringify(rightResult));
                 }
             }
             else {
