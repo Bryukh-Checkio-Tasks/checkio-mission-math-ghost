@@ -121,7 +121,7 @@ requirejs(['ext_editor_1', 'jquery_190', 'raphael_210', 'snap.svg_030'],
 
 
             if (data.ext) {
-                var rightResult = data.ext["answer"];
+                var rightResult = data.ext["real_point"];
                 var userResult = data.out;
                 var result = data.ext["result"];
                 var result_addon = data.ext["result_addon"];
