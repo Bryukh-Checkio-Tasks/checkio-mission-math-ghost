@@ -38,16 +38,16 @@ from tests import TESTS
 from math import hypot
 
 MAX_DIST = 3
+SCORE_DIST = 0.1
 
-def ext_checker(answer, user_result):
-    if (not isinstance(user_result, (list, tuple)) or len(user_result) != 2 or
-            not isinstance(user_result[0], (int, float)) or
-            not isinstance(user_result[0], (int, float))):
-        return False, "The result should be a list/tuple of the numbers.", 0
-    if (not 0 <= user_result[0] < 10 or not 0 <= user_result[1] < 10):
-        return False, "The prediction coordinates should be from 0 to 10.", 0
-    distance = hypot(answer[0] - user_result[0], answer[1] - user_result[1])
-    score = 0 if distance >= 1 else round(100 * distance / MAX_DIST)
+def ext_checker(values, user_result):
+    if not isinstance(user_result, (float, int)):
+        return False, "The result should be a float or an integer.", 0
+    # if (not 0 <= user_result[0] < 10 or not 0 <= user_result[1] < 10):
+    #     return False, "The prediction coordinates should be from 0 to 10.", 0
+    score_distance = (max(values) - min(values)) * SCORE_DIST
+    distance = abs(user_result - values[-1])
+    score = 0 if distance >= score_distance else round(100 * distance / score_distance)
     return True, "Next", score
 
 cover = """def cover(f, data):

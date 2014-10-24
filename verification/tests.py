@@ -47,4 +47,4 @@ for dummy in range(N):
             dummy -= 1
             break
     else:
-        TESTS["Score"].append({"input": values[:-1], "answer": values[-1]})
+        TESTS["Score"].append({"input": values[:-1], "answer": values})
