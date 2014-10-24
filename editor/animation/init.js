@@ -122,10 +122,14 @@ requirejs(['ext_editor_1', 'jquery_190', 'raphael_210', 'snap.svg_030'],
 
             if (data.ext) {
                 var rightResult = data.ext["real_point"];
+                var values = data.ext["answer"];
                 var userResult = data.out;
                 var result = data.ext["result"];
                 var result_addon = data.ext["result_addon"];
                 var result_score = data.ext["score"];
+
+                var svg = new SVG($content.find(".explanation")[0]);
+                svg.draw(values, userResult);
 
                 //if you need additional info from tests (if exists)
                 var explanation = data.ext["explanation"];
@@ -193,6 +197,47 @@ requirejs(['ext_editor_1', 'jquery_190', 'raphael_210', 'snap.svg_030'],
 
             var colorWhite = "#FFFFFF";
 
+            var p = 10;
+
+            var unitMarkSize = 5;
+
+            var unit = 30;
+
+            var yField = 300;
+
+            var sizeX = 12 * unit + p;
+            var sizeY = yField + 2 * p;
+
+
+            var paper = Raphael(dom, sizeX, sizeY);
+
+
+            var aAxis = {"stroke": colorBlue3, "stroke-width": 2, "arrow-end": "classic"};
+            var aUnit = {"stroke": colorBlue3, "stroke-width": 2};
+            var aPoint = {"fill": colorBlue4, "stroke-width": 0};
+            var aPointUser = {"fill": colorBlue3, "stroke-width": 0};
+
+            var R = 3;
+
+            this.draw = function(values, user_value) {
+                paper.path([["M", p, sizeY - p], ["V", p]]).attr(aAxis);
+                paper.path([["M", p, sizeY / 2], ["H", sizeX - p]]).attr(aAxis);
+                for (var i = 1; i < 12; i++) {
+                    paper.path([["M", p + unit * i, sizeY / 2 - unitMarkSize], ["V", sizeY / 2 + unitMarkSize]]).attr(aUnit);
+                }
+                var minValue = Math.min.apply(null, values);
+                var maxValue = Math.max.apply(null, values);
+
+                var vUnit = yField / (maxValue - minValue);
+
+                for (var j = 0; j < values.length; j++) {
+                    var c = paper.circle((j + 1) * unit, sizeY - p - (values[j] - minValue) * vUnit, R).attr(aPoint);
+                }
+                c.attr("fill", colorOrange4);
+                if (!isNaN(user_value)) {
+                    paper.circle(11 * unit, sizeY - p - (user_value - minValue) * vUnit, R).attr(aPointUser);
+                }
+            }
 
 
         }

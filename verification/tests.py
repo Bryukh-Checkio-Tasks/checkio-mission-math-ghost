@@ -39,12 +39,15 @@ for dummy in range(N):
     values = []
     for x in range(1, 12):
         try:
-            # print(eval(formula_x))
             i = round(eval(formula_x), 3)
-            # j = round(eval(formula_y) % 10, 3)
             values.append(i)
         except OverflowError:
             dummy -= 1
             break
     else:
-        TESTS["Score"].append({"input": values[:-1], "answer": values, "real_point": values[-1]})
+        if abs(max(values) - min(values)) < 1:
+            dummy -= 1
+        else:
+            TESTS["Score"].append({"input": values[:-1],
+                                   "answer": values,
+                                   "real_point": values[-1]})
