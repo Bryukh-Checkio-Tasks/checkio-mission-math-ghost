@@ -15,11 +15,12 @@ TESTS = {
     ]
 }
 
-N = 20
+N = 30
 SIZE = 10
 
+import math
 
-def generate_formula(prob_x=0.3, prob_bracket=0.2):
+def generate_formula(prob_x=0.5, prob_bracket=0.2, prob_trig=0.25):
     formula = "x"
     for _ in range(15):
         operation = random.choice(["+", "-", "*", "/"])
@@ -30,6 +31,8 @@ def generate_formula(prob_x=0.3, prob_bracket=0.2):
             formula += str(round(random.random() * 10, 3))
         if random.random() < prob_bracket:
             formula = "(" + formula + ")"
+        if random.random() < prob_trig:
+            formula = "math." + random.choice(["sin", "cos"]) + "(" + formula + ")"
     return formula
 
 

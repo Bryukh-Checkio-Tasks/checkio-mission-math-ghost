@@ -217,7 +217,7 @@ requirejs(['ext_editor_1', 'jquery_190', 'raphael_210', 'snap.svg_030'],
             var aPoint = {"fill": colorBlue4, "stroke-width": 0};
             var aPointUser = {"fill": colorBlue3, "stroke-width": 0};
 
-            var R = 3;
+            var R = 5;
 
             this.draw = function(values, user_value) {
                 paper.path([["M", p, sizeY - p], ["V", p]]).attr(aAxis);
