@@ -35,8 +35,8 @@ def generate_formula(prob_x=0.5, prob_bracket=0.2, prob_trig=0.25):
             formula = "math." + random.choice(["sin", "cos"]) + "(" + formula + ")"
     return formula
 
-
-for dummy in range(N):
+dummy = 0
+while dummy < N:
     formula_x = generate_formula()
     # formula_y = generate_formula()
     values = []
@@ -44,13 +44,11 @@ for dummy in range(N):
         try:
             i = round(eval(formula_x), 3)
             values.append(i)
-        except OverflowError:
-            dummy -= 1
+        except (OverflowError, ZeroDivisionError):
             break
     else:
-        if abs(max(values) - min(values)) < 1:
-            dummy -= 1
-        else:
+        if abs(max(values) - min(values)) >= 1:
             TESTS["Score"].append({"input": values[:-1],
                                    "answer": values,
                                    "real_point": values[-1]})
+            dummy += 1
